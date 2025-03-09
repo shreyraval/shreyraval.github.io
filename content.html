@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrey Raval - Portfolio Details</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        /* Hero image banner */
+        .page-banner {
+            height: 300px;
+            background-image: linear-gradient(135deg, #0066cc, #00ccff);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255, 255, 255, 0.1)" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,197.3C672,224,768,224,864,197.3C960,171,1056,117,1152,101.3C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .page-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-banner p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About section */
+        .about {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: #0066cc;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #0066cc;
+            margin: 15px auto 0;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Resume section */
+        .resume {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+
+        .resume-item {
+            margin-bottom: 40px;
+        }
+
+        .resume-item h3 {
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .resume-item .date {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* Projects section */
+        .projects {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .tag {
+            background-color: #e6f2ff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #0066cc;
+        }
+
+        /* Contact section */
+        .contact {
+            padding: 80px 0;
+            background-color: #e6f2ff;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #0055aa;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            color: #0066cc;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #0055aa;
+            text-decoration: none;
+        }
+
+        /* Home button */
+        .home-button {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #0055aa;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                padding-top: 40px;
+            }
+
+            .resume-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Shrey Raval</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>My Portfolio</h1>
+            <p>Explore my work, experience, and skills in Data Science and IT Solutions</p>
+            <a href="index.html" class="home-button">Back to Home</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Welcome to my portfolio! I am a passionate Information Systems professional with experience in IT Support and Data Science. 
+                        I specialize in Python, AI/ML, and web development with a strong academic background in Computer Information Systems.
+                    </p>
+                    <br>
+                    <p>
+                        My approach to work combines technical expertise, analytical problem-solving, and attention to detail. 
+                        I believe in using data-driven insights to create efficient solutions and strive to build innovative applications that solve real-world problems.
+                    </p>
+                    <br>
+                    <p>
+                        With a Master's in Information Systems from the University of Washington and a Bachelor's in Computer Information Systems from Benedictine University, 
+                        I bring both academic knowledge and practical experience to my work. I'm always looking for new challenges and opportunities to grow both personally and professionally.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="ai-generated-image.png" alt="Data Science Visualization">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume fade-in">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+
+            <div class="resume-grid">
+                <!-- Work Experience -->
+                <div>
+                    <h3>Work Experience</h3>
+
+                    <div class="resume-item">
+                        <h4>Contract Employee (IT Support)</h4>
+                        <div class="date">Mar 2023 - May 2023</div>
+                        <h5>Collegis Education (Myticas Consulting, Contractor), Oakbrook, IL</h5>
+                        <ul>
+                            <li>Assisted in resolving IT issues for over 10 colleges and universities, resulting in a 95% customer satisfaction rating and a 20% decrease in average resolution time.</li>
+                            <li>Provided personalized support to clients through fielding over 60 calls and emails daily, resulting in a 30% increase in the first-call issue resolution rate.</li>
+                            <li>Generated and tracked over 180 incident tickets on the Cherwell system for all customer inquiries, maintaining an average resolution time of 12 hours or less.</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <h4>Barista & Cashier</h4>
+                        <div class="date">Oct 2022 - May 2024</div>
+                        <h5>Starbucks at Benedictine University, Lisle, IL</h5>
+                        <ul>
+                            <li>Operated cash register with 100% accuracy, handling an average of 150 transactions daily, resulting in improved efficiency and reduced waiting times for customers.</li>
+                            <li>Prepared and served beverages to customers with a focus on quality and speed, increasing customer satisfaction ratings by 25% within the first quarter of employment.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education & Skills -->
+                <div>
+                    <h3>Education</h3>
+
+                    <div class="resume-item">
+                        <h4>Master of Science in Information Systems</h4>
+                        <div class="date">2024 - 2025</div>
+                        <h5>University of Washington, Seattle, WA</h5>
+                        <p>Expected graduation: June 2025</p>
+                    </div>
+
+                    <div class="resume-item">
+                        <h4>Bachelor of Science in Computer Information Systems</h4>
+                        <div class="date">2020 - 2024</div>
+                        <h5>Benedictine University, Lisle, IL</h5>
+                        <p>GPA: 3.87</p>
+                    </div>
+
+                    <div class="resume-item">
+                        <h4>Summer School - Data Science and Analysis</h4>
+                        <div class="date">2022</div>
+                        <h5>Stanford University, Stanford, CA</h5>
+                        <p>Grade: A</p>
+                    </div>
+
+                    <h3>Skills</h3>
+
+                    <div class="resume-item">
+                        <h4>Technical Skills</h4>
+                        <ul>
+                            <li>Python, AI, ML, R, JavaScript</li>
+                            <li>React JS, Node JS, SQL</li>
+                            <li>C, JAVA, HTML, CSS, PHP</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <h4>Business & Management Skills</h4>
+                        <ul>
+                            <li>Financial & Managerial Accounting</li>
+                            <li>Microeconomics & Macroeconomics</li>
+                            <li>Management & Project Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn-submit">Download Full Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects fade-in">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="project1.png" alt="Supply Chain Management Tool">
+                    <div class="project-content">
+                        <h3>Supply Chain Management Tool (SCM)</h3>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">React</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Data Analytics</span>
+                        </div>
+                        <p>A comprehensive platform for inventory tracking, order management, and optimization using advanced data analytics and predictive modeling. The incorporation of Agile methodology helped make the project process efficient by 20%.</p>
+                        <a href="#" class="btn-submit">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="project2.png" alt="Amazon Reviews Sentimental Analysis">
+                    <div class="project-content">
+                        <h3>Amazon Reviews' Sentimental Analysis</h3>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">NLTK</span>
+                        </div>
+                        <p>Applied NLP techniques and machine learning algorithms to analyze Amazon food reviews and classify them into positive, negative, and neutral sentiments. Implemented advanced feature engineering to boost the model's accuracy.</p>
+                        <a href="#" class="btn-submit">Google Colab Link</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="project3.png" alt="ChatGPT Clone">
+                    <div class="project-content">
+                        <h3>ChatGPT Clone</h3>
+                        <div class="project-tags">
+                            <span class="tag">React JS</span>
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">OpenAI API</span>
+                        </div>
+                        <p>Created a static ChatGPT clone from scratch with an interactive UI using the OpenAI API. The application functions like the actual ChatGPT, answering questions and generating responses based on user input.</p>
+                        <a href="#" class="btn-submit">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>Feel free to reach out to me for collaboration, opportunities, or just to say hello!</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i>📧</i>
+                    <p>shreyraval710@gmail.com</p>
+                </div>
+
+                <div class="contact-item">
+                    <i>📱</i>
+                    <p>(341) 345-7968</p>
+                </div>
+
+                <div class="contact-item">
+                    <i>📍</i>
+                    <p>Seattle, WA</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <a href="index.html" class="home-button">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/shrey-raval-b39740260/">LinkedIn</a>
+                <a href="https://github.com/shreyraval">GitHub</a>
+            </div>
+            <p>&copy; 2025 Shrey Badrishkumar Raval. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">↑</a>
+
+    <!-- JavaScript for animations and interactions -->
+    <script>
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade-in animations on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+
+                if (isVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial styles for fade elements
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        });
+
+        // Add scroll event listener
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+    </script>
+</body>
+</html>
